@@ -11,15 +11,24 @@ using System.Web.Script.Serialization;
 
 namespace PassionProject2024N01604846.Controllers
 {
+    ///
     public class InstructorController : Controller
     {
         private JavaScriptSerializer jss = new JavaScriptSerializer();
 
         // GET: Instructor/List
+        /// <summary>
+        /// To list the data from the database for the instrument lessons
+        /// </summary>
+        /// <example>
+        /// https://localhost:44300/api/InstrumentLessonData/ListInstrumentLesson
+        /// </example>
+        /// <returns>Lesson information</returns>
         public ActionResult List()
         {
+            
             //objective: communivate with out instructor data api to retrieve a list of instrumetn lessons 
-            //curl https://localhost:44300/api/InstrumentLessonData/ListInstrumentLesso
+            //curl https://localhost:44300/api/InstrumentLessonData/ListInstrumentLesson
             HttpClient client = new HttpClient();
             string url = "https://localhost:44300/api/InstrumentLessonData/ListInstrumentLesson";
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -33,8 +42,15 @@ namespace PassionProject2024N01604846.Controllers
 
             return View(lessons);
         }
-
-        // GET: Instructor/Details/5
+        /// <summary>
+        /// Retrieves the details of a specific instrument lesson based on the provided ID.
+        /// </summary>
+        /// /// <param name="id">The ID of the instrument lesson to retrieve.</param>
+        /// <example>
+        /// GET: /InstrumentLesson/Details/5
+        /// This will communicate with the InstrumentLessonData API and retrieve the instrument lesson with ID 5,
+        /// and then display its details in the view.
+        /// </example>
         public ActionResult Details(int id)
         {
             // Objective: Communicate with our instructor data API to retrieve one instructor
@@ -54,7 +70,16 @@ namespace PassionProject2024N01604846.Controllers
         {
             return View();
         }
-
+        /// <summary>
+        /// Creates a new instrument lesson by posting the provided data to the API.
+        /// </summary>
+        /// /// <param name="instrumentlesson">The instrument lesson object containing the details to be created.</param>
+        /// <returns>A redirection to the list view if the creation is successful, otherwise it will redirect to an error view.
+        /// </returns>
+        /// /// <example>
+        /// POST: /Instructor/Create
+        /// This will send a JSON payload containing the new instrument lesson details to the InstrumentLessonData API and create the instrument lesson in the system.
+        /// </example>
         // POST: Instructor/Create
         [HttpPost]
         public ActionResult Create(InstrumentLesson instrumentlesson)
@@ -85,8 +110,16 @@ namespace PassionProject2024N01604846.Controllers
 
 
         }
+        /// <summary>
+        /// Retrieves the details of a specific instrument lesson for editing based on the provided ID.
+        /// </summary>
+        /// <param name="id">The ID of the instrument lesson to retrieve for editing.</param>
+        /// <returns>A View displaying the details of the selected instrument lesson for editing.</returns>
+        /// /// GET: /InstrumentLesson/Edit/5
+        /// This will communicate with the InstrumentLessonData API to retrieve the instrument lesson with ID 5,
+        /// and then display its details in the view for editing.
+        /// </example>
 
-        // GET: Instructor/Edit/5
         public ActionResult Edit(int id)
         {
             // Objective: Communicate with our instructor data API to retrieve one instructor
@@ -100,8 +133,16 @@ namespace PassionProject2024N01604846.Controllers
 
             return View(selectedInstructor);
         }
-
-        // POST: Instructor/Edit/5
+        /// <summary>
+        /// Updates the details of a specific instrument lesson by posting the provided data to the API.
+        /// </summary>
+        /// <param name="id">The ID of the instrument lesson to be updated.</param>
+        //// <param name="instrumentLesson">The instrument lesson object containing the updated details.</param>
+        /// <returns>It is redirecting to the list view if the update is successful, otherwise redirects to an error view.</returns>
+        /// <example>
+        /// POST: /Instructor/Edit/5
+        /// This will send a JSON payload containing the updated instrument lesson details to the InstrumentLessonData API and update the instrument lesson in the system.
+        /// </example>
         [HttpPost]
         public ActionResult Update(int id, InstrumentLesson instrumentLesson)
         {
@@ -140,6 +181,15 @@ namespace PassionProject2024N01604846.Controllers
             }
 
         }
+        /// <summary>
+        /// Retrieves the details of a specific instrument lesson for confirmation of deletion based on the provided ID.
+        /// </summary>
+        /// <param name="id">The ID of the instrument lesson to retrieve for deletion confirmation.</param>
+        /// <returns>A View displaying the details of the selected instrument lesson for confirmation of deletion.</returns>
+        /// <example>
+        /// GET: /InstrumentLesson/DeleteConfirm/5
+        /// This will communicate with the InstrumentLessonData API to retrieve the instrument lesson with ID 5, and then display its details in the view for deletion confirmation.
+        /// </example>
 
         // GET: Instructor/Delete/5
         public ActionResult DeleteConfirm(int id)
@@ -150,8 +200,16 @@ namespace PassionProject2024N01604846.Controllers
             InstrumentLessonDto selectedlesson = response.Content.ReadAsAsync<InstrumentLessonDto>().Result;
             return View(selectedlesson);
         }
+        /// <summary>
+        /// Deletes a specific instrument lesson by sending a delete request to the API.
+        /// </summary>
+        /// <param name="id">The ID of the instrument lesson to be deleted.</param>
+        /// <returns>A redirection to the list view if the deletion is successful, otherwise redirects to an error view.</returns>
+        /// <example>
+        /// POST: /Animal/Delete/5
+        /// This will send a delete request to the InstrumentLessonData API to remove the instrument lesson with ID 5 from the system.
+        /// </example>
 
-        // POST: Animal/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)
         {

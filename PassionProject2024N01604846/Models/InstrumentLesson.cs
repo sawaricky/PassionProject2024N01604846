@@ -9,7 +9,9 @@ namespace PassionProject2024N01604846.Models
 {
     public class InstrumentLesson
     {
-        //
+        /// <summary>
+        /// Represents an instrument lesson entity in the system, including properties such as lesson name, start date, end date, associated instructor, and collection of associated academies.
+        /// </summary>
         [Key]
         public int LessonID {  get; set; }
         //guitar/piano etc
@@ -30,7 +32,9 @@ namespace PassionProject2024N01604846.Models
         public ICollection<Academy> Academys { get; set;}
 
     }
-    // Data Transfer Object (DTO) allows us to package the information for each model
+    /// <summary>
+    /// Represents a Data Transfer Object (DTO) for an instrument lesson entity in the system, including properties such as lesson ID, lesson name, start date, end date, instructor ID, first name, and last name.
+    /// </summary>
     public class InstrumentLessonDto
     {
         public int LessonID { get; set; }

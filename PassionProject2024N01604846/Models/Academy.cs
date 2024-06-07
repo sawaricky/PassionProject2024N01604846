@@ -7,6 +7,9 @@ using System.Web;
 
 namespace PassionProject2024N01604846.Models
 {
+    /// <summary>
+    /// Represents an academy entity in the system, including properties such as academy name, academy address, and a collection of instrument lessons associated with the academy.
+    /// </summary>
     public class Academy
     {
         [Key]

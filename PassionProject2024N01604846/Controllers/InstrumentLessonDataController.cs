@@ -48,7 +48,15 @@ namespace PassionProject2024N01604846.Controllers
 
             return LessonDtos;
         }
-
+        /// <summary>
+        /// Retrieves the details of a specific instructor based on the provided ID.
+        /// </summary>
+        /// <param name="id">The ID of the instructor to retrieve.</param>
+        /// <returns>An IHttpActionResult containing the instructor details if found, otherwise a NotFound result.</returns>
+        /// <example>
+        /// GET: /api/InstructorData/FindInstructor/5
+        /// This will retrieve the instructor with ID 5 and return its details as an InstructorDto object.
+        /// </example>
         [ResponseType(typeof(InstructorDto))]
         [HttpGet]
 
@@ -72,7 +80,15 @@ namespace PassionProject2024N01604846.Controllers
             return Ok(InstructorDto);
 
         }
-
+        /// <summary>
+        /// Retrieves the details of a specific instrument lesson based on the provided ID.
+        /// </summary>
+        /// <param name="id">The ID of the instrument lesson to retrieve.</param>
+        /// <returns>An IHttpActionResult containing the instrument lesson details if found, otherwise a NotFound result.</returns>
+        /// <example>
+        /// GET: /api/InstrumentLessonData/FindInstrumentLesson/5
+        /// This will retrieve the instrument lesson with ID 5 and return its details as an InstrumentLessonDto object.
+        /// </example>
         [ResponseType(typeof(InstrumentLessonDto))]
         [HttpGet]
         public IHttpActionResult FindInstrumentLesson(int id)
@@ -97,8 +113,16 @@ namespace PassionProject2024N01604846.Controllers
             return Ok(instrumentLessonDto);
 
         }
-
-
+        /// <summary>
+        /// Updates the details of a specific instrument lesson by sending the provided data to the API.
+        /// </summary>
+        /// <param name="id">The ID of the instrument lesson to be updated.</param>
+        /// <param name="instrumentLessonDto">The instrument lesson DTO containing the updated details.</param>
+        /// <returns>An IHttpActionResult indicating the result of the update operation.</returns>
+        /// <example>
+        /// POST: /api/InstrumentLessonData/UpdateInstrumentLesson/5
+        /// This will update the instrument lesson with ID 5 using the provided details in the InstrumentLessonDto object.
+        /// </example>
         //curl -d @instructor.json -H "Content-type:application/json" https://localhost:44300/api/InstrumentLessonData/UpdateInstructor/1
 
         [ResponseType(typeof(void))]
@@ -146,7 +170,15 @@ namespace PassionProject2024N01604846.Controllers
 
             return StatusCode(HttpStatusCode.NoContent);
         }
-
+        /// <summary>
+        /// Adds a new instrument lesson by sending the provided data to the API.
+        /// </summary>
+        /// <param name="instrumentLesson">The instrument lesson object containing the details to be added.</param>
+        /// <returns>An IHttpActionResult indicating the result of the add operation. Returns Ok if successful, otherwise returns BadRequest with the model state.</returns>
+        /// <example>
+        /// POST: /api/InstrumentLessonData/AddInstrumentLesson
+        /// This will add a new instrument lesson using the provided details in the InstrumentLesson object.
+        /// </example>
         [ResponseType(typeof(InstrumentLesson))]
         [HttpPost]
         public IHttpActionResult AddInstrumentLesson(InstrumentLesson instrumentLesson)
@@ -161,7 +193,15 @@ namespace PassionProject2024N01604846.Controllers
 
             return Ok();
         }
-
+        /// <summary>
+        /// Deletes a specific instrument lesson by sending a delete request to the API.
+        /// </summary>
+        /// <param name="id">The ID of the instrument lesson to be deleted.</param>
+        /// <returns>An IHttpActionResult indicating the result of the delete operation. Returns Ok if successful, otherwise returns NotFound.</returns>
+        /// <example>
+        /// POST: /api/InstrumentLessonData/DeleteInstrumentLesson/2
+        /// This will delete the instrument lesson with ID 2 from the database.
+        /// </example>
         // POST: api/InstrumentLessonData/DeleteInstructor/2
         [ResponseType(typeof(InstrumentLesson))]
         [HttpPost]
@@ -178,6 +218,14 @@ namespace PassionProject2024N01604846.Controllers
 
             return Ok(instrumentlesson);
         }
+        /// <summary>
+        /// Checks if an instrument lesson with the specified ID exists in the database.
+        /// </summary>
+        /// <param name="id">The ID of the instrument lesson to check for existence.</param>
+        /// <returns>True if an instrument lesson with the specified ID exists, otherwise false.</returns>
+        /// <example>
+        /// bool lessonExists = InstrumentLessonExists(5);
+        /// </example>
         private bool InstrumentLessonExists(int id)
         {
             return db.InstrumentLessons.Count(e => e.LessonID == id) > 0;

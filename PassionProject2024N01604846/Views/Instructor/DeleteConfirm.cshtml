@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "DeleteConfirm";
 }
-
+@*confirm delete using the ID*@
 <h2>Are you sure you want to delete this Lesson?</h2>
 <h3>Lesson Name:</h3>
 <p>@Model.LessonName </p>
@@ -11,7 +11,7 @@
 <p> @Model.FirstName @Model.LastName</p>
 
 <form action="/Instructor/Delete/@Model.LessonID" method="POST">
-    <p>This Action cannot be undone</p>
+    <p class="fw-bold">This Action cannot be undone</p>
     <input class="btn btn-danger" type="submit" value="Confirm Delete" />
     <a href="@Url.Action("List", "Instructor")" class="btn btn-secondary">Back to List</a>
 </form>
