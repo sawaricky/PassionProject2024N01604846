@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create Lesson</h2>
+<form action="/Instructor/Create" method="Post">
+    <div>
+        <label>Lesson Name</label> <input type="text" name="LessonName" />
+    </div>
+    <div>
+        <label>Start Date</label> <input type="datetime" name="StartDate" />
+    </div>
+    <div>
+        <label>End Date</label> <input type="datetime" name="EndDate" />
+    </div>
+    <div>
+        <label>Instructor Id</label> <input type="number" name="InstructorId" />
+    </div>
+    <div>
+           <input type="submit" value="Add Lesson" />
+    </div>
+</form>
+

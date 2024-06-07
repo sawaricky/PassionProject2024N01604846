@@ -1,0 +1,14 @@
+﻿@model PassionProject2024N01604846.Models.InstrumentLessonDto
+
+@{
+    ViewBag.Title = "DeleteConfirm";
+}
+
+<h2>Are you sure you want to delete this Lesson?</h2>
+<a href="/Instructor/List">Cancel</a>
+<h2>Lesson Name: @Model.LessonName </h2>
+<h2>Instructor Name: @Model.FirstName @Model.LastName</h2>
+
+<form action="/Instructor/Delete/@Model.LessonID" method="POST">
+    <input type="submit" value="Confirm Delete" />
+</form>

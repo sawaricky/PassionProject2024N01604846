@@ -1,0 +1,20 @@
+﻿@model IEnumerable<PassionProject2024N01604846.Models.InstrumentLessonDto>
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+@foreach (var lesson in Model)
+{
+    <h2>@lesson.LessonName</h2>
+
+    // Constructing the URL for the instructor details page using the InstructorId property
+    var instructorId = lesson.InstructorId;
+    //var instructorDetailsUrl = "/Instructor/Details/";
+    <p><a href="/Instructor/Details/@lesson.LessonID">@lesson.FirstName</a></p>
+
+    <p>Start Date: @lesson.StartDate</p>
+    <p>End Date: @lesson.EndDate</p>
+    <p>Lesson ID: @lesson.LessonID </p>
+}
+<a href="@Url.Action("New", "Instructor")" class="btn btn-secondary">Add lesson</a>
