@@ -1,13 +1,28 @@
-﻿@model PassionProject2024N01604846.Models.Instructor
+﻿@model PassionProject2024N01604846.Models.InstructorDto
 @{
-    ViewBag.Title = "InstrumentLessonDetails";
+    ViewBag.Title = "Instructor Details";
 }
-@*Displaying instructor information *@
-<h2> Instructor Details</h2>
+<h2 class="text-center">Instructor Details</h2>
 
-<a href="/Instructor/ListInstrumentDetails">Go back to list</a>
-<h2>Show Instructor</h2>
-<div>Lesson name: @Model.FirstName</div>
-<div>Start date: @Model.LastName</div>
-<div> End date: @Model.HireDate</div>
-<div>Instructor id: @Model.Wages</div>
+<div class="d-flex justify-content-center align-content-center">
+
+    <div class="col-md-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <P><span class="fw-bold"> First Name:</span> @Model.FirstName</P>
+                <p><span class="fw-bold">Last Name:</span> @Model.LastName</p>
+                <p><span class="fw-bold">Hire Date:</span> @Model.HireDate.ToShortDateString()</p>
+                <p><span class="fw-bold">Wages:</span> @Model.Wages</p>
+                <p><span class="fw-bold">Instructor Number:</span> @Model.InstructorNumber</p>
+                <p><span class="fw-bold">Instructor ID:</span> @Model.InstructorId</p>
+            </div>
+        </div>
+        <div class="justify-content-center align-content-center">
+            <a href="@Url.Action("ListInstructor", "Instructor")" class="btn btn-secondary">Go back to instructor List</a>
+            <a href="@Url.Action("EditInstructor", new { id = Model.InstructorId })" class="btn btn-primary">Edit</a>
+            <a href="@Url.Action("DeleteConfirmInstructor", new { id = Model.InstructorId })" class="btn btn-danger">Delete</a>
+        </div>
+    </div>  
+</div>
+
+            

@@ -20,7 +20,7 @@
                 <ul class="navbar-nav flex-grow-1">
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
                     <li><a href="@Url.Action("List", "Instructor")" class="nav-link"> Lessons</a></li>
-                   
+                    <li><a href="@Url.Action("ListInstructor", "Instructor")" class="nav-link"> Instructors </a></li>
                 </ul>
                  @Html.Partial("_LoginPartial")
             </div>

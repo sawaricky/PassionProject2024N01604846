@@ -18,7 +18,7 @@ namespace PassionProject2024N01604846.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         /// <summary>
-        /// Lists the instrument lessons in the database
+        /// Retrieves the details of a InstrumentLessons 
         /// </summary>
         /// <returns>an array of intrument lesson objects Dtos </returns>
         /// <example>
@@ -49,6 +49,38 @@ namespace PassionProject2024N01604846.Controllers
             return LessonDtos;
         }
         /// <summary>
+        /// Retrieves the details of a  instructors 
+        /// </summary>
+        /// <returns>an array of intrument lesson objects Dtos </returns>
+        /// <example>
+        /// Get: api/InstrumentLessonData/ListInstrumentLesson -> [{ "InstructorId": 1, "FirstName": "Akash"}{"LastName": "Sharma", "Wages": 12}] 
+        /// </example>
+        [HttpGet]
+        [Route("api/InstrumentLessonData/ListInstructors")]
+        public List<InstructorDto> ListInstructors()
+        {
+            // This is similar to Select * from Instructors
+            List<Instructor> instructors = db.Instructors.ToList();
+            List<InstructorDto> instructorDtos = new List<InstructorDto>();
+
+            foreach (Instructor instructor in instructors)
+            {
+                InstructorDto dto = new InstructorDto
+                {
+                    HireDate = instructor.HireDate,
+                    InstructorNumber = instructor.InstructorNumber,
+                    LastName = instructor.LastName,
+                    Wages = instructor.Wages,
+                    FirstName = instructor.FirstName,
+                    InstructorId = instructor.InstructorId
+                };
+
+                instructorDtos.Add(dto);
+            }
+
+            return instructorDtos;
+        }
+        /// <summary>
         /// Retrieves the details of a specific instructor based on the provided ID.
         /// </summary>
         /// <param name="id">The ID of the instructor to retrieve.</param>
@@ -62,22 +94,23 @@ namespace PassionProject2024N01604846.Controllers
 
         public IHttpActionResult FindInstructor(int id)
         {
-            Instructor Instructor = db.Instructors.Find(id);
-            InstructorDto InstructorDto = new InstructorDto()
-            {
-
-                InstructorId = Instructor.InstructorId,
-                FirstName = Instructor.FirstName
-                //InstrumentLessonWeight = Instructor.InstrumentLessonWeight,
-                //SpeciesID = Instructor.Species.SpeciesID,
-                //SpeciesName = InstrumentLesson.Species.SpeciesName
-            };
-            if (Instructor == null)
+            Instructor instructor = db.Instructors.Find(id);
+            if (instructor == null)
             {
                 return NotFound();
             }
 
-            return Ok(InstructorDto);
+            InstructorDto instructorDto = new InstructorDto
+            {
+                InstructorId = instructor.InstructorId,
+                FirstName = instructor.FirstName,
+                LastName = instructor.LastName,
+                HireDate = instructor.HireDate,
+                Wages = instructor.Wages,
+                InstructorNumber = instructor.InstructorNumber
+            };
+
+            return Ok(instructorDto);
 
         }
         /// <summary>
@@ -171,6 +204,61 @@ namespace PassionProject2024N01604846.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
         /// <summary>
+        /// Updates the details of a specific Instructor by sending the provided data to the API.
+        /// </summary>
+        /// <param name="id">The ID of the Instructor to be updated.</param>
+        /// <param name="InstructorDto">The Instructor DTO containing the updated details.</param>
+        /// <returns>An IHttpActionResult indicating the result of the update operation.</returns>
+        /// <example>
+        /// POST: /api/InstrumentLessonData/UpdateInstructor/5
+        /// This will update the instrument lesson with ID 5 using the provided details in the InstructorDto object.
+        /// </example>
+        [ResponseType(typeof(void))]
+        [HttpPost]
+        public IHttpActionResult UpdateInstructor(int id, InstructorDto instructorDto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != instructorDto.InstructorId)
+            {
+                return BadRequest();
+            }
+
+            Instructor instructor = db.Instructors.Find(id);
+            if (instructor == null)
+            {
+                return NotFound();
+            }
+
+            instructor.FirstName = instructorDto.FirstName;
+            instructor.LastName = instructorDto.LastName;
+            instructor.HireDate = instructorDto.HireDate;
+            instructor.Wages = instructorDto.Wages;
+            instructor.InstructorNumber = instructorDto.InstructorNumber;
+            db.Entry(instructor).State = EntityState.Modified;
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!InstructorExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+        /// <summary>
         /// Adds a new instrument lesson by sending the provided data to the API.
         /// </summary>
         /// <param name="instrumentLesson">The instrument lesson object containing the details to be added.</param>
@@ -193,6 +281,30 @@ namespace PassionProject2024N01604846.Controllers
 
             return Ok();
         }
+        /// <summary>
+        /// Adds a new Instructor by sending the provided data to the API.
+        /// </summary>
+        /// <param name="Instructor">TheInstructor object containing the details to be added.</param>
+        /// <returns>An IHttpActionResult indicating the result of the add operation. Returns Ok if successful, otherwise returns BadRequest with the model state.</returns>
+        /// <example>
+        /// POST: /api/InstrumentLessonData/AddInstructor
+        /// This will add a new Instructor using the provided details in the Instructor object.
+        /// </example>
+        [ResponseType(typeof(Instructor))]
+        [HttpPost]
+        public IHttpActionResult AddInstructor(Instructor instructor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Instructors.Add(instructor);
+            db.SaveChanges();
+
+            return Ok();
+        }
+
         /// <summary>
         /// Deletes a specific instrument lesson by sending a delete request to the API.
         /// </summary>
@@ -219,6 +331,30 @@ namespace PassionProject2024N01604846.Controllers
             return Ok(instrumentlesson);
         }
         /// <summary>
+        /// Deletes a specific Instructor by sending a delete request to the API.
+        /// </summary>
+        /// <param name="id">The ID of the Instructor to be deleted.</param>
+        /// <returns>An IHttpActionResult indicating the result of the delete operation. Returns Ok if successful, otherwise returns NotFound.</returns>
+        /// <example>
+        /// POST: /api/InstrumentLessonData/DeleteInstructor/2
+        /// This will delete the Instructor with ID 2 from the database.
+        /// </example>
+        [ResponseType(typeof(Instructor))]
+        [HttpPost]
+        public IHttpActionResult DeleteInstructor(int id)
+        {
+            Instructor instructor = db.Instructors.Find(id);
+            if (instructor == null)
+            {
+                return NotFound();
+            }
+
+            db.Instructors.Remove(instructor);
+            db.SaveChanges();
+
+            return Ok(instructor);
+        }
+        /// <summary>
         /// Checks if an instrument lesson with the specified ID exists in the database.
         /// </summary>
         /// <param name="id">The ID of the instrument lesson to check for existence.</param>
@@ -229,6 +365,18 @@ namespace PassionProject2024N01604846.Controllers
         private bool InstrumentLessonExists(int id)
         {
             return db.InstrumentLessons.Count(e => e.LessonID == id) > 0;
+        }
+        /// <summary>
+        /// Checks if an Instructors with the specified ID exists in the database.
+        /// </summary>
+        /// <param name="id">The ID of the Instructors to check for existence.</param>
+        /// <returns>True if an Instructors with the specified ID exists, otherwise false.</returns>
+        /// <example>
+        /// bool InstructorExists = InstructorExists(5);
+        /// </example>
+        private bool InstructorExists(int id)
+        {
+            return db.Instructors.Count(e => e.InstructorId == id) > 0;
         }
     }
 }

@@ -251,6 +251,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\guitar.jpg" />
     <Content Include="jsondata\intrumentlesson.json" />
     <None Include="jsondata\instructor.json" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -311,6 +312,10 @@
     <Content Include="Views\Instructor\DeleteConfirm.cshtml" />
     <Content Include="Views\Instructor\InstructorDetails.cshtml" />
     <Content Include="Views\Instructor\Error.cshtml" />
+    <Content Include="Views\Instructor\ListInstructor.cshtml" />
+    <Content Include="Views\Instructor\NewInstructor.cshtml" />
+    <Content Include="Views\Instructor\DeleteConfirmInstructor.cshtml" />
+    <Content Include="Views\Instructor\EditInstructor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

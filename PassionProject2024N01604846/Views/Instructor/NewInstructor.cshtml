@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "NewInstructor";
+}
+
+@*creating a new lesson*@
+<h2>Create Lesson</h2>
+<form action="/Instructor/CreateInstructor" method="Post">
+    <div class="form-group">
+        <label>First Name</label>
+        <input type="text" name="FirstName" />
+    </div>
+    <div class="form-group">
+        <label>Last Name</label>
+        <input type="datetime" name="LastName" />
+    </div>
+    <div class="form-group">
+        <label>Hire Date</label>
+        <input type="datetime" name="HireDate" />
+    </div>
+    <div class="form-group">
+        <label>Wages</label>
+        <input type="number" name="Wages" />
+    </div>
+    <div class="form-group">
+        <label>Instructor Number</label>
+        <input type="text" name="InstructorNumber" />
+    </div>
+    <div>
+        <input class="btn btn-secondary" type="submit" value="Add Instructor" />
+        <a href="@Url.Action("ListInstructor", "Instructor")" class="btn btn-secondary">Back to List</a>
+    </div>
+
+</form>
+

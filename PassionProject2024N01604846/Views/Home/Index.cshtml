@@ -3,13 +3,19 @@
 }
 
 <main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">Music Academy</h1>
-        <p class="lead">Welcome to the Music Employement management system</p>
+    <section class="row text-center" aria-labelledby="aspnetTitle">
+        <h1 id="title">Welcome to the Music employment management system MEMS</h1>
+        <p class="lead"> Where Music feels like heaven </p>
 
     </section>
+    <div class="m-2">
+        <div class="row m-2">
+            <a href="@Url.Action("List", "Instructor")" class="btn btn-secondary">List Lessons</a>
+        </div>
+        <div class="row m-2">
+            <a href="@Url.Action("ListInstructor", "Instructor")" class="btn btn-info">List Instructors</a>
+        </div>
 
-    <div class="row">
-        <a href="@Url.Action("List", "Instructor")" class="btn btn-secondary">List Lessons</a>
     </div>
+    <span class="d-flex justify-content-sm-center  align-content-center"><img src="~/images/guitar.jpg" /></span>
 </main>
