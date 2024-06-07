@@ -3,15 +3,16 @@
     ViewBag.Title = "List";
 }
 
-<h2>List</h2>
+<h2>Lesson List</h2>
 @foreach (var lesson in Model)
 {
-    <h2>@lesson.LessonName</h2>
-
     // Constructing the URL for the instructor details page using the InstructorId property
     var instructorId = lesson.InstructorId;
+    <h2>Instructor Name: @lesson.FirstName</h2>
+
+
     //var instructorDetailsUrl = "/Instructor/Details/";
-    <p><a href="/Instructor/Details/@lesson.LessonID">@lesson.FirstName</a></p>
+    <p>Lesson Name: <a href="/Instructor/Details/@lesson.LessonID">@lesson.LessonName</a></p>
 
     <p>Start Date: @lesson.StartDate</p>
     <p>End Date: @lesson.EndDate</p>

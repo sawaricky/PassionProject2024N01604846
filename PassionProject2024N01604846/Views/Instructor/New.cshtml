@@ -5,20 +5,26 @@
 
 <h2>Create Lesson</h2>
 <form action="/Instructor/Create" method="Post">
-    <div>
-        <label>Lesson Name</label> <input type="text" name="LessonName" />
+    <div class="form-group">
+        <label>Lesson Name</label>
+        <input type="text" name="LessonName" />
+    </div>
+    <div class="form-group">
+        <label>Start Date</label>
+        <input type="datetime" name="StartDate" />
+    </div>
+    <div class="form-group">
+        <label>End Date</label>
+        <input type="datetime" name="EndDate" />
+    </div>
+    <div class="form-group">
+        <label>Instructor Id</label>
+        <input type="number" name="InstructorId" />
     </div>
     <div>
-        <label>Start Date</label> <input type="datetime" name="StartDate" />
+        <input class="btn btn-secondary" type="submit" value="Add Lesson" />
+        <a href="@Url.Action("List", "Instructor")" class="btn btn-secondary">Back to List</a>
     </div>
-    <div>
-        <label>End Date</label> <input type="datetime" name="EndDate" />
-    </div>
-    <div>
-        <label>Instructor Id</label> <input type="number" name="InstructorId" />
-    </div>
-    <div>
-           <input type="submit" value="Add Lesson" />
-    </div>
+    
 </form>
 
