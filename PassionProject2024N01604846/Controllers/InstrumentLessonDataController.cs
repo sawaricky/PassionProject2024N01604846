@@ -49,11 +49,11 @@ namespace PassionProject2024N01604846.Controllers
             return LessonDtos;
         }
         /// <summary>
-        /// Retrieves the details of a  instructors 
+        /// Retrieves the details of an  instructors 
         /// </summary>
-        /// <returns>an array of intrument lesson objects Dtos </returns>
+        /// <returns>an array of Instructor objects Dtos </returns>
         /// <example>
-        /// Get: api/InstrumentLessonData/ListInstrumentLesson -> [{ "InstructorId": 1, "FirstName": "Akash"}{"LastName": "Sharma", "Wages": 12}] 
+        /// Get: api/InstrumentLessonData/ListInstructors -> [{ "InstructorId": 1, "FirstName": "Akash"}{"LastName": "Sharma", "Wages": 12}] 
         /// </example>
         [HttpGet]
         [Route("api/InstrumentLessonData/ListInstructors")]
