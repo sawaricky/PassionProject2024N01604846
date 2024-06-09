@@ -52,7 +52,7 @@ namespace PassionProject2024N01604846.Controllers
         public ActionResult ListInstructor()
         {
 
-            //objective: communivate with out instructor data api to retrieve a list of instrumetn lessons 
+            //objective: communivate with out instructor data api to retrieve a list of INstructors
             //curl https://localhost:44300/api/InstrumentLessonData/ListInstructor
             HttpClient client = new HttpClient();
             string url = "https://localhost:44300/api/InstrumentLessonData/ListInstructors";
@@ -78,7 +78,7 @@ namespace PassionProject2024N01604846.Controllers
         /// </example>
         public ActionResult Details(int id)
         {
-            // Objective: Communicate with our instructor data API to retrieve one instructor
+            // Objective: Communicate with our instructor data API to retrieve one Instrument lesson
             HttpClient client = new HttpClient();
             string url = "https://localhost:44300/api/InstrumentLessonData/FindInstrumentLesson/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -213,7 +213,7 @@ namespace PassionProject2024N01604846.Controllers
 
         public ActionResult Edit(int id)
         {
-            // Objective: Communicate with our instructor data API to retrieve one instructor
+            // Objective: Communicate with our instructor data API to Edit one Instrument lesson
             HttpClient client = new HttpClient();
             string url = "https://localhost:44300/api/InstrumentLessonData/FindInstrumentLesson/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -234,7 +234,7 @@ namespace PassionProject2024N01604846.Controllers
         /// </example>
         public ActionResult EditInstructor(int id)
         {
-            // Objective: Communicate with our instructor data API to retrieve one instructor
+            // Objective: Communicate with our instructor data API to edit one instructor
             HttpClient client = new HttpClient();
             string url = "https://localhost:44300/api/InstrumentLessonData/FindInstructor/" + id;
             HttpResponseMessage response = client.GetAsync(url).Result;
@@ -378,11 +378,12 @@ namespace PassionProject2024N01604846.Controllers
             InstructorDto selectedinstructor = response.Content.ReadAsAsync<InstructorDto>().Result;
             return View(selectedinstructor);
         }
+        //both summary blocks of instrument and instructor below
         /// <summary>
         /// Deletes a specific instrument lesson by sending a delete request to the API.
         /// </summary>
         /// /// <summary>
-        /// Deletes a specific Instructorby sending a delete request to the API.
+        /// Deletes a specific Instructor by sending a delete request to the API.
         /// </summary>
         /// <param name="id">The ID of the instrument lesson to be deleted.</param>
         /// /// <param name="id">The ID of the Instructor to be deleted.</param>
