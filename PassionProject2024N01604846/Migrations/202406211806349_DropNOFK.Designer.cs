@@ -7,13 +7,13 @@ namespace PassionProject2024N01604846.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class Academy : IMigrationMetadata
+    public sealed partial class DropNOFK : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Academy));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DropNOFK));
         
         string IMigrationMetadata.Id
         {
-            get { return "202406040214257_Academy"; }
+            get { return "202406211806349_DropNOFK"; }
         }
         
         string IMigrationMetadata.Source

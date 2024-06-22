@@ -24,6 +24,11 @@ namespace PassionProject2024N01604846.Models
         public string InstructorNumber { get; set; }
         public DateTime HireDate { get; set; }
         public decimal Wages { get; set; }
+
+        [ForeignKey("Academy")]
+        public int AcademyId { get; set; }
+        public virtual Academy Academy { get; set; }
+
     }
     /// <summary>
     /// Represents a DTO (Data Transfer Object) for an instructor entity in the system.
@@ -38,6 +43,10 @@ namespace PassionProject2024N01604846.Models
         public string InstructorNumber { get; set; }
         public DateTime HireDate { get; set; }
         public decimal Wages { get; set; }
+        public int AcademyId { get; set; }
+
+        public string AcademyName { get; set; }
+
     }
 
     }

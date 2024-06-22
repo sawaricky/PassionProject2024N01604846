@@ -28,8 +28,7 @@ namespace PassionProject2024N01604846.Models
 
         //an instructor can have many instrumemnt lessons
 
-        //an instructor can be at many academies 
-        public ICollection<Academy> Academys { get; set;}
+
 
     }
     /// <summary>

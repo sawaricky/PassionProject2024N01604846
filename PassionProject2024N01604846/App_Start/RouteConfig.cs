@@ -18,6 +18,11 @@ namespace PassionProject2024N01604846
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+           name: "Academy",
+           url: "Academy/{action}/{id}",
+           defaults: new { controller = "Academy", action ="Index", id = UrlParameter.Optional }
+       );
         }
     }
 }

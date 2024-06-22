@@ -3,10 +3,53 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialCreate : DbMigration
+    public partial class everything : DbMigration
     {
         public override void Up()
         {
+            CreateTable(
+                "dbo.Academies",
+                c => new
+                    {
+                        AcademyId = c.Int(nullable: false, identity: true),
+                        AcademyName = c.String(),
+                        AcademyAddress = c.String(),
+                        InstrumentLesson_LessonID = c.Int(),
+                    })
+                .PrimaryKey(t => t.AcademyId)
+                .ForeignKey("dbo.InstrumentLessons", t => t.InstrumentLesson_LessonID)
+                .Index(t => t.InstrumentLesson_LessonID);
+            
+            CreateTable(
+                "dbo.Instructors",
+                c => new
+                    {
+                        InstructorId = c.Int(nullable: false, identity: true),
+                        FirstName = c.String(),
+                        LastName = c.String(),
+                        InstructorNumber = c.String(),
+                        HireDate = c.DateTime(nullable: false),
+                        Wages = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        AcademyId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.InstructorId)
+                .ForeignKey("dbo.Academies", t => t.AcademyId, cascadeDelete: true)
+                .Index(t => t.AcademyId);
+            
+            CreateTable(
+                "dbo.InstrumentLessons",
+                c => new
+                    {
+                        LessonID = c.Int(nullable: false, identity: true),
+                        LessonName = c.String(),
+                        StartDate = c.DateTime(nullable: false),
+                        EndDate = c.DateTime(nullable: false),
+                        InstructorId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.LessonID)
+                .ForeignKey("dbo.Instructors", t => t.InstructorId, cascadeDelete: true)
+                .Index(t => t.InstructorId);
+            
             CreateTable(
                 "dbo.AspNetRoles",
                 c => new
@@ -83,17 +126,26 @@
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.InstrumentLessons", "InstructorId", "dbo.Instructors");
+            DropForeignKey("dbo.Academies", "InstrumentLesson_LessonID", "dbo.InstrumentLessons");
+            DropForeignKey("dbo.Instructors", "AcademyId", "dbo.Academies");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.InstrumentLessons", new[] { "InstructorId" });
+            DropIndex("dbo.Instructors", new[] { "AcademyId" });
+            DropIndex("dbo.Academies", new[] { "InstrumentLesson_LessonID" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.InstrumentLessons");
+            DropTable("dbo.Instructors");
+            DropTable("dbo.Academies");
         }
     }
 }

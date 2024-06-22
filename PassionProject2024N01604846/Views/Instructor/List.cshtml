@@ -12,7 +12,12 @@
 
 
     //var instructorDetailsUrl = "/Instructor/Details/";
-    <p>Lesson Name: <a href="/Instructor/Details/@lesson.LessonID">@lesson.LessonName</a></p>
+<p>
+    <span class="font-weight-bold" style="font-size: 18px;">Lesson Name:</span>
+    <a href="/Instructor/Details/@lesson.LessonID" class="text-primary f-w-bold">
+        @lesson.LessonName
+    </a>
+</p>
 
     <p>Start Date: @lesson.StartDate</p>
     <p>End Date: @lesson.EndDate</p>

@@ -10,7 +10,7 @@ namespace PassionProject2024N01604846.Models
     public class ApplicationUser : IdentityUser
     {
         //thsi class represents the user''s table in the project
-
+           
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -32,7 +32,7 @@ namespace PassionProject2024N01604846.Models
 
         public DbSet<Instructor> Instructors { get; set; }
 
-        public DbSet<Academy> Academies { get; set; }
+        public DbSet<Academy> Academys { get; set; }
 
         public static ApplicationDbContext Create()
         {

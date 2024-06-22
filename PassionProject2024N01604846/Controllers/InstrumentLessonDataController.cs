@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Diagnostics;
 using System.Web.Http.Description;
 using static System.Net.WebRequestMethods;
+using PassionProject2024N01604846.Migrations;
 
 namespace PassionProject2024N01604846.Controllers
 {
@@ -72,7 +73,9 @@ namespace PassionProject2024N01604846.Controllers
                     LastName = instructor.LastName,
                     Wages = instructor.Wages,
                     FirstName = instructor.FirstName,
-                    InstructorId = instructor.InstructorId
+                    InstructorId = instructor.InstructorId,
+                    AcademyId = instructor.AcademyId
+                    
                 };
 
                 instructorDtos.Add(dto);
@@ -107,7 +110,9 @@ namespace PassionProject2024N01604846.Controllers
                 LastName = instructor.LastName,
                 HireDate = instructor.HireDate,
                 Wages = instructor.Wages,
-                InstructorNumber = instructor.InstructorNumber
+                InstructorNumber = instructor.InstructorNumber,
+                AcademyId = instructor.AcademyId,
+                AcademyName = instructor.Academy.AcademyName
             };
 
             return Ok(instructorDto);
@@ -238,6 +243,7 @@ namespace PassionProject2024N01604846.Controllers
             instructor.HireDate = instructorDto.HireDate;
             instructor.Wages = instructorDto.Wages;
             instructor.InstructorNumber = instructorDto.InstructorNumber;
+            instructor.AcademyId = instructorDto.AcademyId;
             db.Entry(instructor).State = EntityState.Modified;
 
             try
